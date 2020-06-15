@@ -8,7 +8,7 @@ A simple system to generate alerts on your website.
 - Lots of cutomization
 - Unlimited amount of alerts
 - JSON system
-- Custom triggers (to do)
+- Custom triggers
 
 ## READ THIS
 
@@ -18,7 +18,19 @@ alertplus automatically embeds `jQuery`, `Popper.js`, and `Bootstrap` into your 
 
 ## usage
 
-hold on for this section!
+### getting started...
+
+all you need to use **alertplus** is a `div` element with id `alertplus-out`, `alerts.js` and a `alerts.json` file! (make sure the `alerts.json` file is in the same directory as `alerts.js`)
+
+the `div` element should look like this:
+
+```html
+<div id="alertplus-out">
+    <!--This is where the alerts will be generated-->
+</div>
+```
+
+**Make sure the `div` element is where you will want the alerts to generate on your page**
 
 ## JSON syntax
 
@@ -36,7 +48,7 @@ hold on for this section!
 
 |Supports|
 |-|
-|`success`, `warning`, `danger`|
+|`success`, `warning`, `danger`, `primary`|
 
 |Default|
 |-|
@@ -113,3 +125,29 @@ hold on for this section!
 |Default|
 |-|
 |`false`|
+
+### custom trigger syntax
+
+alertplus supports custom triggers for your alerts. the default trigger is when the window loads.
+
+`JSON` element:
+
+`trigger`: allows you to add a custom trigger
+
+|Supports|
+|-|
+|Special String|
+
+|Default|
+|-|
+|`window.onload`|
+
+**format**
+
+`{TRIGGER}:{ELEMENT}`
+
+the `{ELEMENT}` should be an ID. it can be another selector since **alertplus** uses `querySelector()`. but it's recommended you use an ID
+
+**supported triggers**
+
+`onclick` and `onload` (buggy)

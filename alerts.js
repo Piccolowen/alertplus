@@ -26,10 +26,43 @@ while (varr < vlen) {
 $.getJSON('alerts.json', function (data) {
     var alen = data.length
     var out = document.getElementById('alertplus-out')
+    var sout = document.createElement('div')
+    sout.id = 'alertplus-out-scripts'
     out.className = 'container'
     var aarr = 0
     while (aarr < alen) {
         var alerts = document.createElement('div')
+        var ascript = document.createElement('script')
+
+
+
+        if (data[aarr].trigger != undefined) {
+            var trigger = data[aarr].trigger.split(':')
+            if (trigger[1].indexOf('#') == 0) {
+                //ELEMENT IS FOUND USING AN ID
+                if (document.querySelector(trigger[1]) == undefined) {
+                    console.error('Trigger element does not exist.')
+                }
+                else {
+                    alerts.style.display = 'none'
+                    ascript.id = 'alertplus-scriptmanager-' + aarr
+                    ascript.textContent = 'var c = document.currentScript.id;var e = c.split("-")[2];var el = document.querySelector("' + trigger[1] + '");'
+                    if (trigger[0] == 'onclick') {
+                        ascript.textContent += 'el.onclick = function a() { document.getElementById("alertplus-alert" + e).style.display = "block" }'
+                    }
+                    else if (trigger[0] == 'onload') {
+                        ascript.textContent += 'el.onload = function a() { document.getElementById("alertplus-alert" + e).style.display = "block" }'
+                    }
+                }
+            }
+            else {
+                console.error('Unknown element selector for trigger.')
+            }
+        }
+
+
+
+        alerts.id = 'alertplus-alert' + aarr.toString()
         if (data[aarr].state == undefined) {
             alerts.className = 'alert alert-warning'
         }
@@ -97,10 +130,16 @@ $.getJSON('alerts.json', function (data) {
                 }
             }
         }
+        sout.appendChild(ascript)
 
         out.appendChild(alerts)
+        out.appendChild(sout)
 
         aarr++
     }
+    var n = document.createElement('h1')
+    n.textContent = 'Hello'
+    n.id = 'showw-alert'
+    document.body.appendChild(n)
     document.body.appendChild(scripts)
 })

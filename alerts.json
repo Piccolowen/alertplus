@@ -13,5 +13,14 @@
         "state": "warning",
         "content": "Let's see how this goes...",
         "useinnerhtml": true
+    },
+    {
+        "useadvanced": true,
+        "heading": "Custom triggers",
+        "content": "By default the alerts are automatically generated on page load (window.onload). Using these custom triggers, you will be able to have an alert generate on the click of an element! You can still use custom JavaScript code to use these alerts.",
+        "hr": true,
+        "endingcontent": "This is the new way to use alerts.",
+        "state": "danger",
+        "trigger": "onload:#showw-alert"
     }
 ]
