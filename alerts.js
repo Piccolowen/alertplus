@@ -30,21 +30,71 @@ $.getJSON('alerts.json', function (data) {
     var aarr = 0
     while (aarr < alen) {
         var alerts = document.createElement('div')
-        alerts.className = 'alert alert-' + data[aarr].state + ' alert-dismissable fade show'
+        if (data[aarr].state == undefined) {
+            alerts.className = 'alert alert-warning'
+        }
+        else {
+            alerts.className = 'alert alert-' + data[aarr].state
+        }
         alerts.setAttribute('role', 'alert')
         
         if (data[aarr].useadvanced == false || data[aarr].useadvanced == undefined) {
             if (data[aarr].useinnerhtml == true) {
-                alerts.innerHTML = '<b>' + data[aarr].title + '</b> ' + data[aarr].content
+                if (data[aarr].title != undefined) {
+                    if (data[aarr].content == undefined) {
+                        alerts.innerHTML = '<b>' + data[aarr].title + '</b>'
+                    }
+                    else {
+                        alerts.innerHTML = '<b>' + data[aarr].title + '</b> ' + data[aarr].content
+                    }
+                }
+                else {
+                    if (data[aarr].content == undefined) {
+                        alerts.style.display = 'none'
+                    }
+                    else {
+                        alerts.innerHTML = data[aarr].content
+                    }
+                }
             }
             else {
-                alerts.textContent = data[aarr].title + ' ' + data[aarr].content
+                if (data[aarr].title != undefined) {
+                    if (data[aarr].content == undefined) {
+                        alerts.textContent = data[aarr].title
+                    }
+                    else {
+                        alerts.textContent = data[aarr].title + ' ' + data[aarr].content
+                    }
+                }
+                else {
+                    if (data[aarr].content == undefined) {
+                        alerts.style.display = 'none'
+                    }
+                    else {
+                        alerts.textContent = data[aarr].content
+                    }
+                }
             }
         }
         else {
-            alerts.innerHTML = '<h4>' + data[aarr].heading + '</h4><p>' + data[aarr].content + '</p>'
-            if (data[aarr].hr == true) {
-                alerts.innerHTML += '<hr><p>' + data[aarr].endingcontent + '</p>'
+            if (data[aarr].heading == undefined) {
+                if (data[aarr].content == undefined) {
+                    alerts.innerHTML = '<h4>' + data[aarr].state.toUpperCase() + '!</h4>'
+                }
+                else {
+                    alerts.innerHTML = '<p>' + data[aarr].content + '</h4>'
+                }
+            }
+            else {
+                if (data[aarr].content == undefined) {
+                    alerts.innerHTML = '<h4>' + data[aarr].heading + '</h4>'
+                }
+                else {
+                    alerts.innerHTML = '<h4>' + data[aarr].heading + '</h4><p>' + data[aarr].content + '</p>'
+                    if (data[aarr].hr == true) {
+                        alerts.innerHTML += '<hr><p class="text-muted">' + data[aarr].endingcontent + '</p>'
+                    }
+                }
             }
         }
 

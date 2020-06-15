@@ -11,5 +11,10 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "http": "0.0.1-security"
-  }
+  },
+  "repository": {
+    "url": "https://github.com/piccolowen/alertplus",
+    "type": "GitHub"
+  },
+  "homepage": "https://piccolowen.github.io/alertplus"
 }

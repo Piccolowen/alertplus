@@ -1,23 +1,17 @@
 [
     {
-        "useadvanced": false,
-        "title": "Sample alert title!",
-        "state": "warning",
-        "content": "This is a sample warning alert for <b>alertplus</b>",
-        "useinnerhtml": true
-    },
-    {
-        "title": "Heyo!",
-        "state": "success",
-        "content": "Sup dude!",
-        "useinnerhtml": false
-    },
-    {
         "useadvanced": true,
-        "state": "danger",
-        "heading": "This is a header!",
-        "content": "This is some content, just like Bootstrap's example, this content will run a bit longer so that we can successfully display how the spacing works in an alert.",
+        "content": "This is a test of <b>alertplus</b>",
+        "state": "success",
+        "useinnerhtml": true,
+        "heading": "Cross your fingers!",
         "hr": true,
-        "endingcontent": "This is the text below the hr element."
+        "endingcontent": "Hold up, how's <i>this</i> look?"
+    },
+    {
+        "title": "Another test...",
+        "state": "warning",
+        "content": "Let's see how this goes...",
+        "useinnerhtml": true
     }
 ]
